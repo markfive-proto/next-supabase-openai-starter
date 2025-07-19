@@ -1,0 +1,87 @@
+---
+alwaysApply: false
+description: "UX and design guidelines for VibeBoard interface"
+---
+
+# UX & Design Guidelines
+
+## Design System
+- Use Shadcn/ui components as foundation
+- Maintain consistent spacing with Tailwind's spacing scale
+- Follow modern, minimal design principles
+- Prioritize visual hierarchy and readability
+
+## Color Usage
+- Use generated moodboard colors as accent colors in the UI
+- Maintain high contrast ratios for accessibility (WCAG AA)
+- Use neutral grays for interface elements
+- Implement proper dark/light mode support
+
+## Typography
+- Use system fonts for interface text
+- Display generated font pairings prominently in moodboard preview
+- Maintain consistent type scale across components
+- Ensure readable font sizes (minimum 14px for body text)
+
+## Layout & Spacing
+- Follow 8px grid system for consistent spacing
+- Use white space effectively to avoid clutter
+- Implement responsive design with mobile-first approach
+- Ensure touch targets are at least 44px for mobile
+
+## User Experience Patterns
+
+### Loading States
+- Show skeleton loaders during AI generation
+- Display progress indicators for long operations (5+ seconds)
+- Provide estimated time remaining for moodboard generation
+- Use subtle animations to indicate processing
+
+### Error Handling
+- Show user-friendly error messages
+- Provide clear recovery actions ("Try Again", "Use Different Prompt")
+- Display fallback sample moodboards when generation fails
+- Implement graceful degradation for API failures
+
+### Form Design
+- Keep the main prompt input prominent and focused
+- Use placeholder text to guide users: "e.g., Minimal AI dashboard for doctors"
+- Provide example prompts for inspiration
+- Auto-focus and auto-resize text input
+
+### Moodboard Display
+- Use card-based layouts for clean organization
+- Display color swatches with hex codes visible on hover
+- Show images in a grid with consistent aspect ratios
+- Make font names clickable to preview in Google Fonts
+
+## Accessibility
+- Implement proper ARIA labels and roles
+- Ensure keyboard navigation works throughout the app
+- Add alt text for all generated images
+- Test with screen readers
+- Support high contrast mode
+
+## Performance UX
+- Show immediate feedback when user submits prompt
+- Use optimistic UI updates where appropriate
+- Implement image lazy loading for better performance
+- Cache and preload common resources
+
+## Mobile Experience
+- Design touch-friendly interface elements
+- Optimize moodboard display for smaller screens
+- Ensure prompt input is comfortable on mobile keyboards
+- Test on various device sizes and orientations
+
+## Conversion Optimization
+- Make the main CTA ("Start With a Vibe") prominent on homepage
+- Reduce friction in the generation process
+- Show examples of successful moodboards for inspiration
+- Implement smart defaults to speed up user flow
+
+## Brand Personality
+- Friendly and approachable tone in copy
+- Use creative terminology ("vibe", "mood", "aesthetic")
+- Incorporate subtle animations and micro-interactions
+- Balance professionalism with creative energy

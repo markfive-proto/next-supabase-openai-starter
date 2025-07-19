@@ -1,0 +1,56 @@
+---
+globs: "*.ts,*.tsx"
+description: "TypeScript and React coding standards for VibeBoard"
+---
+
+# TypeScript & React Guidelines
+
+## TypeScript Standards
+- Use strict TypeScript configuration
+- Define explicit types for props and state
+- Use interface for component props: `interface MoodboardProps {}`
+- Use type for unions and primitives: `type Status = 'loading' | 'success' | 'error'`
+- Export types from dedicated files in `/types/` directory
+
+## React Component Patterns
+- Use functional components with hooks
+- Implement proper TypeScript props interface
+- Use descriptive component and prop names
+- Extract reusable logic into custom hooks
+
+### Example Component Structure
+```tsx
+interface MoodboardGeneratorProps {
+  initialPrompt?: string;
+  onBoardGenerated: (board: VibeBoard) => void;
+  className?: string;
+}
+
+export function MoodboardGenerator({ 
+  initialPrompt = '', 
+  onBoardGenerated, 
+  className 
+}: MoodboardGeneratorProps) {
+  // Component logic
+}
+```
+
+## Custom Hooks Pattern
+- Prefix with 'use': `useMoodboardGeneration`
+- Return objects for multiple values: `{ board, isLoading, error, generateBoard }`
+- Handle loading and error states consistently
+
+## Error Boundaries
+- Implement error boundaries for AI generation components
+- Provide fallback UI with retry options
+- Log errors for debugging
+
+## Performance
+- Use React.memo for expensive renders
+- Implement proper dependency arrays in useEffect/useCallback
+- Lazy load heavy components with React.lazy()
+
+## AI Integration Types
+- Define strict types for AI API responses
+- Handle partial/failed AI responses gracefully
+- Use discriminated unions for different AI response states

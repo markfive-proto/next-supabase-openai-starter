@@ -1,0 +1,77 @@
+---
+globs: "src/lib/supabase.ts,supabase/**/*.sql,src/types/database.ts"
+description: "Supabase integration and database patterns"
+---
+
+# Supabase Integration Guidelines
+
+## Client Setup
+- Use environment variables for Supabase URL and keys
+- Create typed Supabase client with generated types
+- Implement proper error handling for database operations
+- Use Row Level Security (RLS) for data protection
+
+### Client Configuration
+```typescript
+import { createClient } from '@supabase/supabase-js'
+import { Database } from '@/types/database'
+
+export const supabase = createClient<Database>(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
+```
+
+## Database Schema Rules
+- Use UUID for primary keys
+- Add created_at/updated_at timestamps to all tables
+- Use JSONB for flexible data storage (colors, font_pairing, image_urls)
+- Implement proper foreign key relationships
+- Add database indexes for query optimization
+
+### Migration Best Practices
+- Use descriptive migration names
+- Add comments to explain complex queries
+- Test migrations on development branch first
+- Include both up and down migration paths
+
+## Row Level Security (RLS)
+- Enable RLS on all user-data tables
+- Create policies for authenticated and anonymous access
+- Allow anonymous users to create boards (MVP requirement)
+- Restrict editing/deleting to board creators
+
+### Example RLS Policy
+```sql
+-- Allow authenticated users to see their own boards
+CREATE POLICY "Users can view own boards" ON vibe_boards
+  FOR SELECT USING (auth.uid() = user_id);
+
+-- Allow anonymous creation for MVP
+CREATE POLICY "Allow anonymous board creation" ON vibe_boards
+  FOR INSERT WITH CHECK (user_id IS NULL);
+```
+
+## TypeScript Types
+- Generate types from Supabase schema: `npm run generate:types`
+- Store generated types in `src/types/database.ts`
+- Use Supabase types in component props and API responses
+- Keep types in sync with database schema changes
+
+## Authentication Patterns
+- Use Supabase Auth for user management
+- Implement social login options (Google, GitHub)
+- Handle auth state changes in React components
+- Provide guest/anonymous functionality for MVP
+
+## Error Handling
+- Handle Supabase errors consistently
+- Log database errors for debugging
+- Provide user-friendly error messages
+- Implement retry logic for network failures
+
+## Performance Optimization
+- Use appropriate query filters and limits
+- Implement pagination for large datasets
+- Cache frequently accessed data
+- Use Supabase real-time features sparingly

@@ -1,0 +1,70 @@
+---
+globs: "src/app/api/**/*.ts,src/lib/ai/*.ts,src/lib/openai.ts"
+description: "API routes and AI integration patterns"
+---
+
+# API & AI Integration Guidelines
+
+## API Route Structure (Next.js App Router)
+- Use proper HTTP methods and status codes
+- Implement comprehensive error handling
+- Add request validation and rate limiting
+- Return consistent JSON response format
+
+### Standard API Response Format
+```typescript
+type APIResponse<T = any> = {
+  success: boolean;
+  data?: T;
+  error?: string;
+  message?: string;
+}
+```
+
+## OpenAI Integration
+- Store API key in environment variables: `OPENAI_API_KEY`
+- Implement retry logic with exponential backoff
+- Set appropriate timeouts (30s for image generation)
+- Handle rate limiting gracefully
+
+### Prompt Engineering
+- Use structured prompts for consistent results
+- Include style constraints in system messages
+- Provide fallback prompts for failed generations
+
+### Example AI Service Pattern
+```typescript
+export class MoodboardAIService {
+  async generateStyleConcept(prompt: string): Promise<StyleConcept> {
+    // Implementation with error handling
+  }
+  
+  async generateImages(stylePrompts: string[]): Promise<string[]> {
+    // Batch image generation with retries
+  }
+}
+```
+
+## Error Handling Standards
+- Log all AI API failures with context
+- Implement circuit breaker pattern for repeated failures
+- Provide meaningful error messages to users
+- Track generation success/failure metrics
+
+## Caching Strategy
+- Cache successful AI responses for identical prompts
+- Set appropriate TTL for cached responses
+- Use Redis or Supabase for cache storage
+- Implement cache invalidation strategies
+
+## Rate Limiting
+- Implement user-based rate limits
+- Different limits for authenticated vs anonymous users
+- Track API usage per user
+- Graceful degradation when limits are reached
+
+## Security
+- Validate and sanitize all user inputs
+- Implement CORS policies
+- Use environment variables for sensitive data
+- Add request logging for debugging

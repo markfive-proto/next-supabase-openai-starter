@@ -1,0 +1,103 @@
+---
+alwaysApply: true
+description: "VibeBoard project guidelines and architecture"
+---
+
+# VibeBoard - AI Moodboard Generator
+
+## Project Overview
+VibeBoard is an AI-powered moodboard generator that helps developers and creators generate design inspiration from simple text prompts.
+
+**Phase 1 MVP Focus**: AI Moodboard Generator only - generate color palettes, images, and font pairings from text prompts.
+
+## Tech Stack
+- **Frontend**: Next.js (App Router) + React + TailwindCSS + Shadcn/ui
+- **Backend**: Supabase (Auth + Database + Storage)
+- **AI**: OpenAI API (GPT for style concepts, DALL·E for image generation)
+- **Styling**: TailwindCSS with custom design tokens
+
+## Project Structure
+```
+/
+├── src/
+│   ├── app/                 # Next.js App Router pages
+│   ├── components/          # Reusable UI components
+│   │   ├── ui/             # Shadcn/ui components
+│   │   ├── forms/          # Form components
+│   │   └── moodboard/      # Moodboard-specific components
+│   ├── lib/                # Utilities and configurations
+│   │   ├── supabase.ts     # Supabase client
+│   │   ├── openai.ts       # OpenAI client
+│   │   └── utils.ts        # Utility functions
+│   ├── hooks/              # Custom React hooks
+│   ├── types/              # TypeScript type definitions
+│   └── styles/             # Global styles
+├── public/                 # Static assets
+└── supabase/              # Supabase migrations and types
+```
+
+## Database Schema (Supabase)
+
+### Core Tables
+```sql
+-- Users (handled by Supabase Auth)
+-- Additional user profile data if needed
+
+-- Projects (for future phases)
+projects
+- id (uuid, primary key)
+- user_id (uuid, foreign key)
+- name (text)
+- description (text)
+- created_at (timestamp)
+
+-- Vibe Boards (MVP focus)
+vibe_boards
+- id (uuid, primary key)
+- user_id (uuid, foreign key, nullable for anonymous users)
+- project_id (uuid, foreign key, nullable)
+- prompt (text)
+- colors (jsonb) -- Array of hex color codes
+- font_pairing (jsonb) -- Font names and categories
+- image_urls (jsonb) -- Array of generated image URLs
+- ai_concept (text) -- AI-generated style concept description
+- created_at (timestamp)
+- updated_at (timestamp)
+```
+
+## Development Guidelines
+
+### Component Naming
+- Use PascalCase for component files: `MoodboardGenerator.tsx`
+- Use descriptive names: `ColorPaletteDisplay.tsx`, `ImageGeneration.tsx`
+- Group related components in folders: `moodboard/`, `forms/`, `ui/`
+
+### File Organization
+- Keep AI-related logic in `/lib/ai/` directory
+- Store type definitions in `/types/` with descriptive names
+- Use barrel exports in directories: `index.ts` files
+
+### State Management
+- Use React hooks for local state
+- Consider Zustand for global state if needed in future phases
+- Keep moodboard generation state in a custom hook
+
+### API Routes
+- `/api/generate-moodboard` - Main moodboard generation endpoint
+- `/api/generate-image` - DALL·E image generation
+- `/api/save-board` - Save moodboard to database
+
+### Error Handling
+- Implement retry logic for AI API calls
+- Provide fallback sample boards if generation fails
+- Show user-friendly error messages with recovery options
+
+### Performance
+- Cache AI responses when appropriate
+- Optimize images for web display
+- Implement loading states for AI generation (5+ seconds expected)
+
+### SEO & URLs
+- Follow SEO-friendly URL patterns for pages
+- Use descriptive slugs and proper meta tags
+- Implement proper page titles and descriptions
