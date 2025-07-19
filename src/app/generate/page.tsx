@@ -21,7 +21,7 @@ export default function GeneratePage() {
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold mb-2">Generate Your Vibe Board</h1>
         <p className="text-muted-foreground">
-          Describe your app or project idea, and we'll create a complete visual direction with colors, typography, and imagery.
+          Describe your app or project idea, and we&apos;ll create a complete visual direction with colors, typography, and imagery.
         </p>
       </div>
 

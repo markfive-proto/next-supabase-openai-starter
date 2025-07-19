@@ -27,7 +27,7 @@ export function PromptInput({ onGenerate, isLoading, className }: PromptInputPro
     }
   }
 
-  const useExample = (example: string) => {
+  const selectExample = (example: string) => {
     setPrompt(example)
   }
 
@@ -69,7 +69,7 @@ export function PromptInput({ onGenerate, isLoading, className }: PromptInputPro
                 key={index}
                 variant="outline"
                 size="sm"
-                onClick={() => useExample(example)}
+                onClick={() => selectExample(example)}
                 disabled={isLoading}
                 className="text-xs"
               >

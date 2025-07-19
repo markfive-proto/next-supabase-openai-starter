@@ -33,7 +33,7 @@ export default function HomePage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Get harmonious 5-color palettes tailored to your project's vibe and aesthetic goals.
+              Get harmonious 5-color palettes tailored to your project&apos;s vibe and aesthetic goals.
             </p>
           </CardContent>
         </Card>
@@ -47,7 +47,7 @@ export default function HomePage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Generate 3 unique images that perfectly capture your project's visual direction and mood.
+              Generate 3 unique images that perfectly capture your project&apos;s visual direction and mood.
             </p>
           </CardContent>
         </Card>
@@ -61,7 +61,7 @@ export default function HomePage() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              Discover perfect Google Font pairings that match your project's personality and style.
+              Discover perfect Google Font pairings that match your project&apos;s personality and style.
             </p>
           </CardContent>
         </Card>
@@ -150,7 +150,7 @@ export default function HomePage() {
           <CardContent className="p-8">
             <h2 className="text-2xl font-bold mb-4">Ready to Build Your Vibe?</h2>
             <p className="text-muted-foreground mb-6">
-              Join thousands of creators who've transformed their ideas into beautiful visual directions.
+              Join thousands of creators who&apos;ve transformed their ideas into beautiful visual directions.
             </p>
             <Link href="/generate">
               <Button size="lg" className="text-lg px-8 py-6">

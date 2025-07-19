@@ -31,7 +31,7 @@ export function MoodboardDisplay({
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold">Your Vibe Board</h2>
-          <p className="text-muted-foreground">Generated from: "{board.prompt}"</p>
+          <p className="text-muted-foreground">Generated from: &ldquo;{board.prompt}&rdquo;</p>
         </div>
         <div className="flex gap-2">
           {onRegenerate && (
